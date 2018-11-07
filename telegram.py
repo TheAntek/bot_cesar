@@ -6,6 +6,25 @@ from random import sample
 
 bot = telebot.TeleBot(token)
 
+recipe = '''
+*Салат Цезарь*
+
+1. Порезать хлеб, выложить на сковородку, бросить пару зубчиков чеснока. Жарить, как свою бывшую
+2. Помыть куринное филе, приправить и поджарить до золотистого цвета. 
+3. Приготовить соус: взбить в блендере 1 яйцо, 1 зубчик чеснока, горчицу и ещё что-то
+4. Кинуть всё в кучу, добавить каких-то листьев салата. Полить соусом, дополнить пармезаном и помидорами черри.
+'''
+
+
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    bot.send_message(message.chat.id, '/help - рецепт')
+
+
+@bot.message_handler(commands=['help'])
+def handle_start(message):
+    bot.send_message(message.chat.id, recipe, parse_mode='Markdown')
+
 
 @bot.inline_handler(lambda query: len(query.query) > 0)
 def encrypt_text(query):
