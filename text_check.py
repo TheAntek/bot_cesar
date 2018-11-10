@@ -13,3 +13,13 @@ def check(text):
         return key
 
     return False
+
+
+def only_text(text):
+    # удалить '[5]' в конце строки
+
+    text = text.rstrip()  # убираем возможный пробел в конце строки
+    text = text.split()[:-1]
+    text = ''.join(text)
+
+    return text
